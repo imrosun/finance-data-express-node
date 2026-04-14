@@ -1,4 +1,4 @@
-# Zorvyn Backend - Financial Dashboard API
+# Z Backend - Financial Dashboard API
 
 A robust, production-ready backend for a financial dashboard, built with Node.js, Express, and Prisma 7.
 
@@ -102,3 +102,17 @@ The full API documentation, including request/response examples and Postman coll
 - `src/modules`: Feature-based modular structure (Auth, Records, Analytics, Users).
 - `src/utils`: Reusable utilities (Response helpers, Async handlers, Type-safe query parsers).
 - `prisma`: Database schema and migration logs.
+
+
+## Decision Making
+- This stack prioritises stability and security over the absolute "lightest" possible build. It's a setup that's ready for a production environment where data integrity is the highest priority. If you need to scale this to 100 features tomorrow, the foundation is solid enough to handle it!
+1. The Framework: Express 5 + TypeScript
+Decision: I chose Express 5 (the latest version) paired with TypeScript.
+2. The Database: PostgreSQL + Prisma 7
+Decision: PostgreSQL as the data store and Prisma 7 as the ORM.
+3. Authentication: Stateless JWT + RBAC
+Decision: JSON Web Tokens (JWT) for session management and Role-Based Access Control (RBAC) for permissions.
+4. Project Structure: Modular (Feature-based)
+Decision: Organising the code by features (auth, records, analytics, users) instead of by type (all controllers in one folder, all routes in another).
+5. Validation Strategy: Zod-First
+Decision: Every request segment (body, query, params) is validated by Zod BEFORE it hits a controller.
